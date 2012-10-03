@@ -3,12 +3,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <ImageView
+        android:id="@+id/pong_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:contentDescription="@string/menu_descripcion"
+        android:src="@drawable/pong" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:contentDescription="@string/menu_descripcion"
+        android:src="@drawable/createby" />
+
     <TextView
+        android:id="@+id/play_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/hello_world"
-        tools:context=".PongActivity" />
+        android:background="@drawable/button_bg"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/menu_play"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/exit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageView1"
+        android:layout_alignLeft="@+id/play_button"
+        android:background="@drawable/button_bg"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/menu_exit"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/options_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/exit_button"
+        android:layout_alignLeft="@+id/exit_button"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_bg"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/menu_options"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </RelativeLayout>
