@@ -4,6 +4,7 @@
     <string name="hello_world">Hola David!</string>
     <string name="menu_settings">Configuracion</string>
     <string name="title_activity_pong">PongActivity</string>
+    <string name="title_activity_game">Pongjuego</string>
     <string name="menu_play">Jugar</string>
     <string name="menu_options">Opciones</string>
     <string name="menu_exit">Salir</string>
