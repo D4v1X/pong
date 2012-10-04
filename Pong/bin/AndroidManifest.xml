@@ -20,8 +20,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="Pongjuego"
-            android:label="@string/title_activity_game" >
+            android:name=".Pongjuego"
+            android:label="@string/title_activity_game"
+            android:screenOrientation="landscape" >
         </activity>
     </application>
 
