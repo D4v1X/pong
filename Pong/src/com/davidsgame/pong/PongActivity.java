@@ -27,7 +27,8 @@ public class PongActivity extends Activity{
 			
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Toast.makeText(getApplicationContext(), R.string.menu_play, Toast.LENGTH_SHORT).show();
+				Toast msg = Toast.makeText(getApplicationContext(), R.string.menu_play, Toast.LENGTH_SHORT);
+				msg.show();
 				juego();
 			}
 
@@ -38,7 +39,8 @@ public class PongActivity extends Activity{
 			
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Toast.makeText(getApplicationContext(), R.string.menu_options, Toast.LENGTH_SHORT).show();
+				Toast msg = Toast.makeText(getApplicationContext(), R.string.menu_options, Toast.LENGTH_SHORT);
+				msg.show();
 			}
 		});
         
@@ -48,7 +50,8 @@ public class PongActivity extends Activity{
 			
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Toast.makeText(getApplicationContext(), R.string.menu_exit, Toast.LENGTH_SHORT).show();
+				Toast msg = Toast.makeText(getApplicationContext(), R.string.menu_exit, Toast.LENGTH_SHORT);
+				msg.show();
 			}
 		});
     }
