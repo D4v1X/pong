@@ -47,5 +47,4 @@ public class Bola extends Elemento implements Elementomovimiento{
 		}
 	}
 
-
 }

@@ -80,7 +80,7 @@ public class Pongview extends SurfaceView implements SurfaceHolder.Callback {
 		Paint paint = new Paint();
 		paint.setColor(Color.YELLOW);
 
-		canvas.drawColor(Color.BLACK);
+		canvas.drawColor(Color.WHITE);
 		canvas.drawRect(barraIzq.getRect(), paint);
 		canvas.drawRect(barraDer.getRect(), paint);
 		canvas.drawRect(bola.getRect(), paint);
