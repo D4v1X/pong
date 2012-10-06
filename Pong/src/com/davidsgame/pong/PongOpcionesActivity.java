@@ -28,7 +28,7 @@ public class PongOpcionesActivity extends Activity {
 				PongOpciones.getInstance().toggleSound();
 			}
 		});
-        //--------------
+        //--------------Buscar en interfaz la opcion checkbox y cambia el estado al pulsar
         CheckBox vibracion = (CheckBox) findViewById(R.id.checkBoxvibracion);
         vibracion.setOnClickListener(new OnClickListener() {
 			
@@ -38,8 +38,18 @@ public class PongOpcionesActivity extends Activity {
 			}
 		});
         //---------------
+        CheckBox acelerometro = (CheckBox) findViewById(R.id.checkBoxacelerometro);
+        acelerometro.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				PongOpciones.getInstance().toggleAcelerometro();
+			}
+		});
+        //---------------
         sonido.setChecked(PongOpciones.getInstance().soundEnabled());
         vibracion.setChecked(PongOpciones.getInstance().vibrationEnabled());
+        acelerometro.setChecked(PongOpciones.getInstance().AcelerometroEnabled());
     }
 
     @Override

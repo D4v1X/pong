@@ -1,17 +1,18 @@
 <resources>
 
     <string name="app_name">Pong</string>
-    <string name="hello_world">Hola David!</string>
-    <string name="menu_settings">Configuracion</string>
+    <string name="hello_world">Hello David!</string>
+    <string name="menu_settings">Settings</string>
     <string name="title_activity_pong">PongActivity</string>
     <string name="title_activity_game">PongJuego</string>
     <string name="title_activity_pong_opciones">PongOpciones</string>
-    <string name="menu_play">Jugar</string>
-    <string name="menu_options">Opciones</string>
-    <string name="menu_exit">Salir</string>
-    <string name="menu_descripcion">Aqui descripcion ^^</string>
-    <string name="menu_vibracion">Vibración</string>
-    <string name="menu_sonido">Sonido</string>
+    <string name="menu_play">Paly</string>
+    <string name="menu_options">Opcions</string>
+    <string name="menu_exit">Exit</string>
+    <string name="menu_descripcion">put description here ^^</string>
+    <string name="menu_vibracion">Vibration</string>
+    <string name="menu_sonido">Sound</string>
+    <string name="menu_acelerometro">Accelerometer</string>
     
 
 </resources>

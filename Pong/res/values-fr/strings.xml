@@ -1,0 +1,18 @@
+<resources>
+
+    <string name="app_name">Pong</string>
+    <string name="hello_world">Bonjour David!</string>
+    <string name="menu_settings">Configuration</string>
+    <string name="title_activity_pong">PongActivity</string>
+    <string name="title_activity_game">PongJuego</string>
+    <string name="title_activity_pong_opciones">PongOpciones</string>
+    <string name="menu_play">Jouer</string>
+    <string name="menu_options">Options</string>
+    <string name="menu_exit">Sortie</string>
+    <string name="menu_descripcion">Mettez description ici ^^</string>
+    <string name="menu_vibracion">Vibration</string>
+    <string name="menu_sonido">Son</string>
+    <string name="menu_acelerometro">Accéléromètre</string>
+    
+
+</resources>
