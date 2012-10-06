@@ -6,7 +6,6 @@ import com.davidsgame.pong.juego.BolaMoveThread;
 import com.davidsgame.pong.juego.Coordenada;
 import com.davidsgame.pong.juego.Elemento;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -40,13 +39,12 @@ public class Pongview extends SurfaceView implements SurfaceHolder.Callback {
 		barraIzq = new Barra(new Coordenada(50, getHeight() / 2 - 50), 20, 100);
 		barraDer = new Barra(new Coordenada(getWidth() - 70,
 				getHeight() / 2 - 50), 20, 100);
-		bola = new Bola(
-				new Coordenada(getWidth() / 2 - 5, getHeight() / 2 - 5), 10, 10);
+		bola = new Bola(new Coordenada(getWidth() / 2 - 5, getHeight() / 2 - 5), 10, 10);
 		thread = new Pongthread(getHolder(), this);
 		thread.setRun(true);
 		thread.start();
 		
-		bolaThread = new BolaMoveThread((Bola) bola);
+		bolaThread = new BolaMoveThread((Bola)bola, (Barra)barraIzq, (Barra)barraDer, new Rect(0,0,getWidth(),getHeight()));
 		bolaThread.setRun(true);
 		bolaThread.start();
 	}
@@ -75,12 +73,11 @@ public class Pongview extends SurfaceView implements SurfaceHolder.Callback {
 
 	}
 
-	@SuppressLint("DrawAllocation")
 	public void onDraw(Canvas canvas) {
 		Paint paint = new Paint();
 		paint.setColor(Color.YELLOW);
 
-		canvas.drawColor(Color.WHITE);
+		canvas.drawColor(Color.DKGRAY);
 		canvas.drawRect(barraIzq.getRect(), paint);
 		canvas.drawRect(barraDer.getRect(), paint);
 		canvas.drawRect(bola.getRect(), paint);
@@ -116,7 +113,7 @@ public class Pongview extends SurfaceView implements SurfaceHolder.Callback {
 			if (elementoActivo != null) {
 				Barra b = (Barra) elementoActivo;
 				if (b.puedoMover(0, y - origenY, new Rect(0, 0, getWidth(), getHeight())))
-					b.move(0, y + origenY);
+					b.move(0, y - origenY);
 			}
 			origenY = y;
 			break;
