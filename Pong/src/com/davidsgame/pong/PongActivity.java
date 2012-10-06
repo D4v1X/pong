@@ -41,6 +41,7 @@ public class PongActivity extends Activity{
 				// TODO Auto-generated method stub
 				Toast msg = Toast.makeText(getApplicationContext(), R.string.menu_options, Toast.LENGTH_SHORT);
 				msg.show();
+				opciones();
 			}
 		});
         
@@ -64,8 +65,13 @@ public class PongActivity extends Activity{
     
 	private void juego() {
 		// TODO Auto-generated method stub
-		Intent juego = new Intent(this, Pongjuego.class);
+		Intent juego = new Intent(this, PongJuegoActivity.class);
 		this.startActivity(juego);
+	}
+	
+	private void opciones(){
+		Intent opciones = new Intent(this, PongOpcionesActivity.class);
+		this.startActivity(opciones);
 	}
 
 }

@@ -44,7 +44,7 @@ public class Pongview extends SurfaceView implements SurfaceHolder.Callback {
 		thread.setRun(true);
 		thread.start();
 		
-		bolaThread = new BolaMoveThread((Bola)bola, (Barra)barraIzq, (Barra)barraDer, new Rect(0,0,getWidth(),getHeight()));
+		bolaThread = new BolaMoveThread((Bola)bola, (Barra)barraIzq, (Barra)barraDer, new Rect(0,0,getWidth(),getHeight()),this.getContext());
 		bolaThread.setRun(true);
 		bolaThread.start();
 	}
