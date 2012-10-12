@@ -7,13 +7,16 @@ import com.davidsgame.pong.juego.Bola;
 import com.davidsgame.pong.juego.BolaMoveThread;
 import com.davidsgame.pong.juego.Coordenada;
 import com.davidsgame.pong.juego.Elemento;
+import com.davidsgame.pong.juego.Marcador;
 import com.davidsgame.pong.opciones.PongOpciones;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Paint.Align;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -28,17 +31,29 @@ public class Pongview extends SurfaceView implements SurfaceHolder.Callback {
 	private Elemento barraDer;
 	private Elemento bola;
 	
+	private static final int UMBRAL_TACTIL = 70;
 	private Elemento elementoActivo = null;
 	private int origenY;
 	
 	private Acelerometro acelerometro;
 	
+	private Marcador marcador;
+	
+	private Paint paint;
 
-	public Pongview(Context context, Acelerometro acelerometro) {
+	public Pongview(Context context, Acelerometro acelerometro, int puntosIzq, int puntosDer) {
 		super(context);
 		// TODO Auto-generated constructor stub
 		getHolder().addCallback(this);
 		this.acelerometro = acelerometro;
+		this.marcador = new Marcador(puntosIzq, puntosDer);
+		
+		paint = new Paint();
+		paint.setColor(Color.YELLOW);
+		paint.setTextAlign(Align.CENTER);
+		paint.setTypeface(Typeface.createFromAsset(this.getContext().getAssets(), "fonts/KellySlab-Regular.ttf"));
+		paint.setTextSize(80);
+		paint.setAntiAlias(true);
 	}
 
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
@@ -56,7 +71,7 @@ public class Pongview extends SurfaceView implements SurfaceHolder.Callback {
 		thread.setRun(true);
 		thread.start();
 		//---Bola
-		bolaThread = new BolaMoveThread((Bola)bola, (Barra)barraIzq, (Barra)barraDer, new Rect(0,0,getWidth(),getHeight()),this.getContext());
+		bolaThread = new BolaMoveThread((Bola)bola, (Barra)barraIzq, (Barra)barraDer, new Rect(0,0,getWidth(),getHeight()),this.getContext(), marcador);
 		bolaThread.setRun(true);
 		bolaThread.start();
 		//---Barra
@@ -91,16 +106,6 @@ public class Pongview extends SurfaceView implements SurfaceHolder.Callback {
 
 	}
 
-	public void onDraw(Canvas canvas) {
-		Paint paint = new Paint();
-		paint.setColor(Color.YELLOW);
-
-		canvas.drawColor(Color.DKGRAY);
-		canvas.drawRect(barraIzq.getRect(), paint);
-		canvas.drawRect(barraDer.getRect(), paint);
-		canvas.drawRect(bola.getRect(), paint);
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -116,12 +121,19 @@ public class Pongview extends SurfaceView implements SurfaceHolder.Callback {
 			switch (event.getAction()) {
 			case MotionEvent.ACTION_DOWN:
 				// Hemos Pulsado
-				if (barraIzq.getRect().contains(x, y)) {
+				Rect aux;
+				aux = new Rect(barraIzq.getRect());
+				aux.set(aux.left - UMBRAL_TACTIL, aux.top,
+						aux.right + UMBRAL_TACTIL, aux.bottom);
+				if (aux.contains(x, y)) {
 					elementoActivo = barraIzq;
 					origenY = y;
 					break;
 				}
-				if (barraDer.getRect().contains(x, y)) {
+				aux = new Rect(barraDer.getRect());
+				aux.set(aux.left - UMBRAL_TACTIL, aux.top,
+						aux.right + UMBRAL_TACTIL, aux.bottom);
+				if (aux.contains(x, y)) {
 					elementoActivo = barraDer;
 					origenY = y;
 					break;
@@ -146,5 +158,34 @@ public class Pongview extends SurfaceView implements SurfaceHolder.Callback {
 		}
 		return true;
 	}
+	
+	public void onDraw(Canvas canvas) {
+		canvas.drawColor(Color.DKGRAY);
+		drawCenterLine(canvas, paint);
+		drawMarcador(canvas);
+		canvas.drawRect(barraIzq.getRect(), paint);
+		canvas.drawRect(barraDer.getRect(), paint);
+		canvas.drawRect(bola.getRect(), paint);
+	}
+	
+	public void drawCenterLine(Canvas canvas, Paint paint){
+		int w=6;
+		int h=20;
+		int separacion=10;
+		int ini=separacion/2;
+		
+		for(int i=0; i<this.getHeight()/(h+separacion); i++){
+			canvas.drawRect(this.getWidth()/2 -w/2, ini, this.getWidth()/2 +w/2, ini+h, paint);
+			ini += h+separacion;
+		}
+	}
+	
+	private void drawMarcador(Canvas canvas){
+		canvas.drawText(Integer.toString(marcador.getPuntosIzq()), getWidth()/2 - 80, 80, paint);
+		canvas.drawText(Integer.toString(marcador.getPuntosDer()), getWidth()/2 + 80, 80, paint);
+	}
 
+	public Marcador getMarcador(){
+		return marcador;
+	}
 }

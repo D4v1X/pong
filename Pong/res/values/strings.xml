@@ -6,7 +6,7 @@
     <string name="title_activity_pong">PongActivity</string>
     <string name="title_activity_game">PongJuego</string>
     <string name="title_activity_pong_opciones">PongOpciones</string>
-    <string name="menu_play">Paly</string>
+    <string name="menu_play">Play</string>
     <string name="menu_options">Opcions</string>
     <string name="menu_exit">Exit</string>
     <string name="menu_descripcion">put description here ^^</string>

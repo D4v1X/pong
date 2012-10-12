@@ -7,7 +7,6 @@ import android.graphics.Rect;
 
 /**
  * @author David
- * 
  */
 public class Bola extends Elemento implements Elementomovimiento {
 	public static final int DCHA_ARRIBA = 1;
@@ -75,31 +74,39 @@ public class Bola extends Elemento implements Elementomovimiento {
 		return false;
 	}
 
-	public void rebota(int x, int y, Rect screen, Rect barraIzq, Rect barraDer) {
+	public int rebota(int x, int y, Rect screen, Rect barraIzq, Rect barraDer) {
 		if (!puedoMover(x, y, screen)) {
 			switch (direccion) {
 			case DCHA_ARRIBA:
-				direccion = (origen.getY() - y <= screen.top) ?
-						DCHA_ABAJO : IZDA_ARRIBA;
+				if (origen.getY() - y <= screen.top)
+					direccion = DCHA_ABAJO;
+				else
+					return 1;
 				break;
 			case IZDA_ARRIBA:
-				direccion = (origen.getY() - y <= screen.top) ?
-						IZDA_ABAJO : DCHA_ARRIBA;
+				if (origen.getY() - y <= screen.top)
+					direccion = IZDA_ABAJO;
+				else
+					return -1;
 				break;
 			case IZDA_ABAJO:
-				direccion = (origen.getY() + alto + y >= screen.bottom) ?
-						IZDA_ARRIBA : DCHA_ABAJO;
+				if (origen.getY() + alto + y >= screen.bottom)
+					direccion = IZDA_ARRIBA;
+				else
+					return -1;
 				break;
 			case DCHA_ABAJO:
-				direccion = (origen.getY() + alto + y >= screen.bottom) ?
-						DCHA_ARRIBA : IZDA_ABAJO;
+				if (origen.getY() + alto + y >= screen.bottom)
+					direccion = DCHA_ARRIBA;
+				else
+					return 1;
 				break;
 			}
 		}
 		Rect barra = null;
-		if(barraIzq.contains(origen.getX()+x, origen.getY()+y, origen.getX()+ancho+x, origen.getY()+alto+y))
+		if(chocaraCon(x, y, barraIzq))
 			barra = barraIzq;
-		if(barraDer.contains(origen.getX()+x, origen.getY()+y, origen.getX()+ancho+x, origen.getY()+alto+y))
+		if(chocaraCon(x, y, barraDer))
 			barra = barraDer;
 		if(barra != null) {
 			switch(direccion) {
@@ -108,19 +115,21 @@ public class Bola extends Elemento implements Elementomovimiento {
 						 IZDA_ARRIBA : DCHA_ABAJO;
 				break;
 			case IZDA_ARRIBA:
-				direccion = (origen.getX()+ancho > barra.right) ?
-						IZDA_ABAJO : DCHA_ARRIBA;
+				direccion = (origen.getX() > barra.right) ?
+						DCHA_ARRIBA : IZDA_ABAJO;
 				break;
 			case IZDA_ABAJO:
-				direccion = (origen.getX()+ancho > barra.right) ?
+				direccion = (origen.getX() > barra.right) ?
 						IZDA_ARRIBA : DCHA_ABAJO;
 				break;
 			case DCHA_ABAJO:
 				direccion = (origen.getX()+ancho < barra.left) ?
-						DCHA_ARRIBA : IZDA_ABAJO;
+						IZDA_ABAJO : DCHA_ARRIBA;
 				break;
 			}
 		}
+		return 0;
 	}
-
+	
+	
 }
